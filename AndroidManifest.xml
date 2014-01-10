@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tydtech.supercamera"
+    package="com.zhiruitech.supercamera"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -22,7 +22,8 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.tydtech.supercamera.MainActivity"
+            android:name="com.zhiruitech.supercamera.MainActivity"
+            android:theme="@style/AppTheme.NoTitleBar"            
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,22 +32,30 @@
             </intent-filter>
         </activity>
         
-        <service android:name="com.tydtech.supercamera.MyFloatViewServices" 
+        <service android:name="com.zhiruitech.supercamera.MyFloatViewServices" 
              android:configChanges="orientation|screenSize"/>
         
-        <receiver android:name="com.tydtech.supercamera.BootCompleteReceiver">   
+        <receiver android:name="com.zhiruitech.supercamera.BootCompleteReceiver">   
             <intent-filter >   
     			<action android:name="android.intent.action.BOOT_COMPLETED" />   
   			</intent-filter> 
         </receiver>
         
-        <receiver android:name="com.tydtech.supercamera.SdMountReceiver">   
+        <receiver android:name="com.zhiruitech.supercamera.SdMountReceiver">   
             <intent-filter >   
     			<action android:name="android.intent.action.MEDIA_REMOVED" />   
     			<action android:name="android.intent.action.MEDIA_UNMOUNTED" />
     			<action android:name="android.intent.action.super.ERRORS" />
   			</intent-filter> 
         </receiver>
+        
+         <activity
+            android:name=".VideoPlayList"         
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         
     </application>
 

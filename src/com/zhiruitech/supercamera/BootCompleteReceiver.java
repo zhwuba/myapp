@@ -4,7 +4,7 @@
  */
 
 
-package com.tydtech.supercamera;
+package com.zhiruitech.supercamera;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

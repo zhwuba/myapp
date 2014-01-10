@@ -4,7 +4,7 @@
  */
 
 
-package com.tydtech.supercamera;
+package com.zhiruitech.supercamera;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,9 +12,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import com.zhiruitech.supercamera.R;
+
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
@@ -24,6 +27,7 @@ import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
 import android.media.MediaRecorder.OnErrorListener;
 import android.media.MediaRecorder.OnInfoListener;
+import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
@@ -63,7 +67,10 @@ public class FloatView extends View {
 	    // The orientation compensation when we start recording.
     private int mOrientationCompensationAtRecordStart;
 
-
+    private ContentValues mContentValues;
+    private String mOutFilePath;
+    private long mRecorderStartTime;
+    private long mRecorderStopTime;
 	
 	private File mFile;
 	
@@ -211,12 +218,16 @@ public class FloatView extends View {
 			e.printStackTrace();
 		}
 		
+		mRecorderStartTime = System.currentTimeMillis();
+		
 		mMediaRecorder.setOnInfoListener(mRecorderInfoListen);
 		mMediaRecorder.setOnErrorListener(mRecorderErrorLsiten);
 		
 	}
 	
 	private void stopVideoRecording(){
+		mRecorderStopTime = System.currentTimeMillis();
+		
 		if(mMediaRecorder != null){
 			mMediaRecorder.stop();
 			mMediaRecorder.reset();
@@ -226,6 +237,14 @@ public class FloatView extends View {
 		 if(mMediaRecorder != null){
 			 mMediaRecorder.release();
 		 }
+		 
+		 Uri localUri = Uri.parse("content://media/external/video/media");
+		 mContentValues.put("_size", Long.valueOf(new File(mOutFilePath).length()));
+		 mContentValues.put("datetaken", Long.valueOf(mRecorderStartTime));
+		 if(mRecorderStopTime > mRecorderStartTime){
+			 mContentValues.put("duration", Long.valueOf(mRecorderStopTime - mRecorderStartTime));
+		 }
+		 mContext.getContentResolver().insert(localUri, mContentValues);
 		 
 	}
 	
@@ -257,7 +276,18 @@ public class FloatView extends View {
 		String uniqueOutFile = path + "/super-" + dateFormat.format(date) + ".mp4";
 		File outFile = new File(mFile,uniqueOutFile);
 		
+		String tile = "super-" + dateFormat.format(date);
+		String displayName = "super-" + dateFormat.format(date) + ".mp4";
+		mContentValues = new ContentValues(7);
+		mContentValues.put("title", tile);
+		mContentValues.put("_display_name", displayName);
+		mContentValues.put("mime_type", "video/mp4");
+		mContentValues.put("_data", uniqueOutFile);
+		
+		
 		mMediaRecorder.setOutputFile(uniqueOutFile);
+		
+		mOutFilePath = uniqueOutFile;
 	}
 	
 	class CameraPreview extends SurfaceView implements SurfaceHolder.Callback {

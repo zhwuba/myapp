@@ -1,20 +1,139 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity" >
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    android:orientation="vertical" 
+    android:background="@color/mainBackgroundColor" 
+    android:paddingLeft="@dimen/main_horizontal_margin" 
+    android:paddingTop="@dimen/main_top_margin" 
+    android:paddingRight="@dimen/main_horizontal_margin"
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <LinearLayout 
+        android:layout_gravity="center_horizontal" 
+        android:orientation="vertical" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:layout_weight="1.0">
+        
+        <ImageView 
+            android:layout_gravity="center_horizontal" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:src="@drawable/ic_launcher" 
+            android:contentDescription="@string/app_name" />
+        
+		<TextView 
+		    android:textSize="@dimen/mainHintSize1" 
+		    android:textColor="@color/mainHintColor" 
+		    android:layout_gravity="center_horizontal" 
+		    android:paddingTop="@dimen/mainHintPaddingTop1" 
+		    android:layout_width="wrap_content" 
+		    android:layout_height="wrap_content" 
+		    android:text="@string/app_name" />
 
-    <GridView 
-        android:gravity="center" 
-        android:id="@+id/main_action" 
+        <TextView 
+            android:textSize="@dimen/mainHintSize2" 
+            android:textColor="@color/bodyTextColor" 
+            android:layout_gravity="center_horizontal" 
+            android:paddingTop="@dimen/mainHintPaddingTop2" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:layout_marginBottom="5.0dip" 
+            android:text="@string/mainHint2" />
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:orientation="horizontal" 
         android:layout_width="fill_parent" 
-        android:layout_height="fill_parent" 
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:stretchMode="columnWidth" 
-        android:horizontalSpacing="20dp"
-        android:columnWidth="150.0dip" 
-        android:numColumns="auto_fit" />
-
-</RelativeLayout>
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="@dimen/mainButtonTop" 
+        android:layout_weight="1.0">
+        
+        <TextView 
+            android:textSize="@dimen/mainHintSize2" 
+            android:textColor="@color/bodyTextColor" 
+            android:gravity="center" 
+            android:orientation="vertical" 
+            android:id="@+id/tvTakeVideo" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:text="@string/action_start" 
+            android:drawableTop="@drawable/ic_take_video" 
+            android:layout_weight="1.0" />
+        
+        <TextView 
+            android:textSize="@dimen/mainHintSize2" 
+            android:textColor="@color/bodyTextColor" 
+            android:gravity="center" 
+            android:orientation="vertical" 
+            android:id="@+id/tvPlayback" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:text="@string/playback" 
+            android:drawableTop="@drawable/ic_playback" 
+            android:layout_weight="1.0" />
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:orientation="horizontal" 
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="@dimen/mainButtonTop" 
+        android:layout_weight="1.0">
+        
+        <TextView 
+            android:textSize="@dimen/mainHintSize2" 
+            android:textColor="@color/bodyTextColor" 
+            android:gravity="center" 
+            android:orientation="vertical" 
+            android:id="@+id/tvAccount" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:text="@string/account" 
+            android:drawableTop="@drawable/ic_account" 
+            android:layout_weight="1.0" />
+        
+        <TextView 
+            android:textSize="@dimen/mainHintSize2" 
+            android:textColor="@color/bodyTextColor" 
+            android:gravity="center" 
+            android:orientation="vertical" 
+            android:id="@+id/tvMore" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:text="@string/more" 
+            android:drawableTop="@drawable/ic_more" 
+            android:layout_weight="1.0" />
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:orientation="horizontal" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="@dimen/mainButtonTop"
+        android:layout_gravity="center_horizontal" 
+        android:layout_weight="1.0">
+        
+        <Button 
+            android:textSize="@dimen/mainHintSize2" 
+            android:textColor="@color/bodyTextColor" 
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/stopRecoder" 
+            android:layout_width="200dp" 
+            android:layout_height="wrap_content"           
+            android:text="@string/action_stop" 
+            android:background="@drawable/button"
+            />
+    </LinearLayout>
+    
+    <TextView 
+        android:textSize="@dimen/bodyTextSize" 
+        android:textColor="@color/bodyTextColor" 
+        android:layout_gravity="center_horizontal" 
+        android:paddingBottom="@dimen/mainZihuaPaddingTop" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:text="@string/zhirui_copyright" 
+        android:layout_weight="1.0" />
+</LinearLayout>

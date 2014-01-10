@@ -14,5 +14,14 @@
     
     <string name="recorder_error_toast">Recorde errors, please check SD card!</string>
     <string name="recorder_error_toast_no_space">Recorde errors, maybe do\'t have enough memory space!</string>
+    
+    <string name="mainHint2">Welcome, Please drive carefully!</string>
+    <string name="playback">Playback</string>
+    <string name="account">Expense</string>
+    <string name="account_detail">Expense details</string>
+    <string name="more">More</string>
+    <string name="setting">Setting</string>
+    
+     <string name="zhirui_copyright">© zhwuba@yahoo.com</string>
 
 </resources>

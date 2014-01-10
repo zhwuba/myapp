@@ -4,7 +4,7 @@
  * 
  */
 
-package com.tydtech.supercamera;
+package com.zhiruitech.supercamera;
 
 import java.io.BufferedReader;
 import java.io.File;

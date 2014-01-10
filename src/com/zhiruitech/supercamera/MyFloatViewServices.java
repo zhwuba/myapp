@@ -2,8 +2,10 @@
  * Create by zhangwuba 2014-1-2
  * 
  */
-package com.tydtech.supercamera;
+package com.zhiruitech.supercamera;
 
+
+import com.zhiruitech.supercamera.R;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
