@@ -51,6 +51,25 @@ public class MainActivity extends Activity {
 			}
 		});
         
+        mVideoRecorderStart.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent service = new Intent(MainActivity.this,MyFloatViewServices.class);  
+				MainActivity.this.startService(service);
+			}
+		});
+        
+        mVideoRecorderStop.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				MainActivity.this.stopService(new Intent(MainActivity.this, MyFloatViewServices.class));
+			}
+		});
+        
         //Intent service = new Intent(this,MyFloatViewServices.class);  
         //this.startService(service);
     }

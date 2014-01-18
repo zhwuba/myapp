@@ -269,6 +269,33 @@ public class Util {
        }
        return 0;
    }
+   
+   
+   public static String videoDuretionFrmat(int duretion){
+	   String str = "";
+	   int sec = duretion / 1000; //sec
+	   int min = sec / 60;
+	   int secmod = sec % 60;
+	   
+	   if(min >= 10){
+		   str = min + ":";
+		   if(secmod >= 10){
+			   str = str + secmod;
+		   }else{
+			   str = str + "0" + secmod;
+		   }
+	   }else{
+		   str = "0" + min + ":";
+		   if(secmod >= 10){
+			   str = str + secmod;
+		   }else{
+			   str = str + "0" + secmod;
+		   }
+	   }
+	   
+	   return str;
+	   
+   }
 	
 	
 }

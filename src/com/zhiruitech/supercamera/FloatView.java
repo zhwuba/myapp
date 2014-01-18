@@ -244,6 +244,7 @@ public class FloatView extends View {
 		 if(mRecorderStopTime > mRecorderStartTime){
 			 mContentValues.put("duration", Long.valueOf(mRecorderStopTime - mRecorderStartTime));
 		 }
+		 Log.i(TAG, "zhangwuba ------  stopVideoRecording ");
 		 mContext.getContentResolver().insert(localUri, mContentValues);
 		 
 	}
@@ -273,7 +274,7 @@ public class FloatView extends View {
 		Date date = new Date(currentTime);
 		SimpleDateFormat dateFormat = 
 				new SimpleDateFormat(mContext.getResources().getString(R.string.video_file_name_format));
-		String uniqueOutFile = path + "/super-" + dateFormat.format(date) + ".mp4";
+		String uniqueOutFile = path + "super-" + dateFormat.format(date) + ".mp4";
 		File outFile = new File(mFile,uniqueOutFile);
 		
 		String tile = "super-" + dateFormat.format(date);
@@ -283,7 +284,7 @@ public class FloatView extends View {
 		mContentValues.put("_display_name", displayName);
 		mContentValues.put("mime_type", "video/mp4");
 		mContentValues.put("_data", uniqueOutFile);
-		
+		Log.i(TAG, "zhangwuba ------  uniqueOutFile " + uniqueOutFile);
 		
 		mMediaRecorder.setOutputFile(uniqueOutFile);
 		
@@ -367,6 +368,8 @@ public class FloatView extends View {
 		}, 1000);
 	}
 	public void releaseVedioRecorder(){
+		mRecorderStopTime = System.currentTimeMillis();
+		
 		if(mMediaRecorder != null){
 			mMediaRecorder.stop();
 			mMediaRecorder.reset();
@@ -385,6 +388,15 @@ public class FloatView extends View {
 			 mCamera.release();  
 			 mCamera = null;
 		 }
+		 
+		 Uri localUri = Uri.parse("content://media/external/video/media");
+		 mContentValues.put("_size", Long.valueOf(new File(mOutFilePath).length()));
+		 mContentValues.put("datetaken", Long.valueOf(mRecorderStartTime));
+		 if(mRecorderStopTime > mRecorderStartTime){
+			 mContentValues.put("duration", Long.valueOf(mRecorderStopTime - mRecorderStartTime));
+		 }
+		 Log.i(TAG, "zhangwuba ------  releaseVedioRecorder ");
+		 mContext.getContentResolver().insert(localUri, mContentValues);
 	}
 	
 	OnInfoListener mRecorderInfoListen = new OnInfoListener() {
